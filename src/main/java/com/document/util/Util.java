@@ -11,7 +11,7 @@ public class Util {
         byte[] hash = md.digest();
         StringBuilder sb = new StringBuilder();
         for (byte b : hash) {
-            sb.append(StringUtils.substring(Integer.toString((b & 0xff) + 0x100, 16), 1));
+//            sb.append(StringUtils.substring(Integer.toString((b & 0xff) + 0x100, 16), 1));
         }
 
         return sb.toString();
