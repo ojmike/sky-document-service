@@ -12,10 +12,10 @@ public class ApplicationProperties {
 
     @Value("${engagement.exist.url.path}")
     private String engagementExistUrlPath;
-    @Value("${google.project.id}")
+    @Value("${google.project.id:}")
     private String googleProjectId;
-    @Value("${google.bucket.name}")
+    @Value("${google.bucket.name:}")
     private String googleBucketName;
-    @Value("${aws.bucket.name}")
+    @Value("${aws.bucket.name:}")
     private String awsBucketName;
 }
