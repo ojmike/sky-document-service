@@ -3,6 +3,7 @@ FROM maven:alpine as build
 COPY . /home/maven/src
 RUN ls -la
 WORKDIR /home/maven/src/document-service
+RUN ls -la
 RUN mvn package
 
 
