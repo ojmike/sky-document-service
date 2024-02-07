@@ -4,7 +4,7 @@ WORKDIR /opt/build
 
 COPY . /home/mvn/src
 WORKDIR /home/maven/src/document-service
-RUN  mvn -B package -DskipTests
+RUN mvn package
 
 
 
