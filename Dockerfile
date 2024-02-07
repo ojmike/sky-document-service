@@ -1,7 +1,7 @@
 FROM maven:alpine as build
 
 WORKDIR /opt/build
-RUN ls .
+RUN file="$(ls -1 .)" && echo $file
 COPY . /home/mvn/src
 WORKDIR /home/maven/src/document-service
 RUN mvn package
