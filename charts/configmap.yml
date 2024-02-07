@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sky-document-service-env
+  namespace: sky
+data:
+  "SERVER_PORT": "4600"

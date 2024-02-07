@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sky-document-service
+  namespace: sky
+  labels:
+    app: sky-document-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sky-document-service
+  template:
+    metadata:
+      labels:
+        app: sky-document-service
+    spec:
+      containers:
+        - name: sky-document-service
+          image: mikeojeola267/document-service:project-init
+          ports:
+            - containerPort: 4600
+          envFrom:
+            - configMapRef:
+                name: sky-document-service-env
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
+      imagePullSecrets:
+        - name: regcred

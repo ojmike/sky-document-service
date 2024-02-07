@@ -17,8 +17,7 @@ RUN ln -s /usr/share/zoneinfo/Africa/Lagos /etc/localtime
 
 COPY --from=build /home/maven/src/target/*.jar  sky-document-service.jar
 
-ENV JAVA_OPTS='-Xmx17G'
 
-ENTRYPOINT java -XX:+UseZGC "$JAVA_OPTS" sky-document-service.jar
+ENTRYPOINT java -jar sky-document-service.jar
 
 

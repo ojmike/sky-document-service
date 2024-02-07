@@ -34,7 +34,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     private final EvidenceCategoryService evidenceCategoryService;
 
-    private final FileHandler fileHandler;
+//    private final FileHandler fileHandler;
 
 
     @Override
@@ -53,22 +53,22 @@ public class FileUploadServiceImpl implements FileUploadService {
         List<FileUploadResponse> fileUploadResponseList = new ArrayList<>();
 
         //Upload File
-        fileUploadRequest.getDocuments().forEach(multipartFile -> {
-            try {
-                String fileReference = fileHandler.upload(multipartFile.getFile().getBytes());
-
-                FileUpload fileUpload = createFile(multipartFile.getFile(), fileReference);
-
-                FileUploadResponse response = new FileUploadResponse();
-                response.setFileId(fileUpload.getFileId());
-                response.setIdentifier(multipartFile.getIdentifier());
-                fileUploadResponseList.add(response);
-
-            } catch (IOException e) {
-                log.error(e.getMessage());
-                throw new RuntimeException(e);
-            }
-        });
+//        fileUploadRequest.getDocuments().forEach(multipartFile -> {
+//            try {
+//                String fileReference = fileHandler.upload(multipartFile.getFile().getBytes());
+//
+//                FileUpload fileUpload = createFile(multipartFile.getFile(), fileReference);
+//
+//                FileUploadResponse response = new FileUploadResponse();
+//                response.setFileId(fileUpload.getFileId());
+//                response.setIdentifier(multipartFile.getIdentifier());
+//                fileUploadResponseList.add(response);
+//
+//            } catch (IOException e) {
+//                log.error(e.getMessage());
+//                throw new RuntimeException(e);
+//            }
+//        });
         return fileUploadResponseList;
 
     }

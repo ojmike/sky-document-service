@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sky-document-service
+  namespace: sky
+spec:
+  selector:
+    app: sky-document-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 4600
+  type: NodePort
