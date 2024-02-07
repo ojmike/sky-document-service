@@ -1,21 +1,24 @@
+FROM amazoncorretto:21-alpine3.16 as build
+
+WORKDIR /opt/build
+
+COPY . /home/mvn/src
+WORKDIR /home/maven/src/document-service
+RUN  mvn -B package -DskipTests
+
+
+
 FROM amazoncorretto:21-alpine3.16
-VOLUME /tmp
-ARG version=21.0.1.12.1
-LABEL authors="Sky Document Service <support@skysystem.com>"
-ARG TARGET_ENVIRONMENT
-EXPOSE 3400 3400
-# Install and setup
-ADD sky-document-service/target/document-service-0.0.1-SNAPSHOT.jar document-service-0.0.1-SNAPSHOT.jar
-# Ensure font config is available for alpine and add fonts used by POI to generate excel report
-RUN apk --update add \
-    fontconfig \
-    ttf-dejavu \
-    wget \
-    unzip
+RUN mkdir /app
 
 RUN rm -f /etc/localtime
-RUN ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Africa/Lagos /etc/localtime
 
-ENV JAVA_OPTS='-Xms6G -Xmx6G'
 
-ENTRYPOINT java  -jar -Dspring.profiles.active=docker  -XX:-OmitStackTraceInFastThrow $JAVA_OPTS document-service-0.0.1-SNAPSHOT.jar
+COPY --from=build /home/maven/src/document-service/build/libs/*.jar  sky-document-service.jar
+
+ENV JAVA_OPTS='-Xmx17G'
+
+ENTRYPOINT java -XX:+UseZGC "$JAVA_OPTS" sky-document-service.jar
+
+
