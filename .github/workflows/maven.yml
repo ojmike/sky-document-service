@@ -31,6 +31,7 @@ jobs:
       run: mvn -B package -DskipTests --file pom.xml
 
   push_to_registry:
+    needs: build
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
