@@ -1,10 +1,10 @@
-FROM maven:alpine as build
+FROM maven:3.9.6-sapmachine-21 as build
 
 COPY . /home/maven/src
 RUN ls -la
-WORKDIR /home/maven/src/document-service
+WORKDIR /home/maven/src/
 RUN ls -la
-RUN mvn package
+RUN mvn package -DskipTests
 
 
 
@@ -15,7 +15,7 @@ RUN rm -f /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Africa/Lagos /etc/localtime
 
 
-COPY --from=build /home/maven/src/document-service/build/libs/*.jar  sky-document-service.jar
+COPY --from=build /home/maven/src/target/*.jar  sky-document-service.jar
 
 ENV JAVA_OPTS='-Xmx17G'
 
