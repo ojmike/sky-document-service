@@ -1,13 +1,10 @@
 FROM maven:alpine as build
-ARG uid=1001
-ARG gid=51
+
 WORKDIR /opt/build
 
-RUN addgroup --gid $gid maven1 && \
-    adduser --disabled-password --gecos "" --no-create-home --uid $uid --gid $gid maven1
+COPY . /home/mvn/src
+RUN ls -la
 
-# Copy the source code to the container
-COPY --chown=maven1:maven1 . /home/maven/src
 WORKDIR /home/maven/src/document-service
 RUN mvn package
 
