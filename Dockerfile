@@ -2,7 +2,7 @@ FROM maven:alpine as build
 
 WORKDIR /opt/build
 
-COPY ./sky-service /home/mvn/src
+COPY ./sky-document-service /home/mvn/src
 WORKDIR /home/maven/src/document-service
 RUN mvn package
 
