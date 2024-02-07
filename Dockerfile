@@ -1,10 +1,10 @@
 FROM maven:alpine as build
 
-WORKDIR /opt/build
 
-COPY . /home/mvn/src
+RUN addgroup --gid $gid gradle1 \
+ && adduser --disabled-password --gecos "" --no-create-home --uid $uid --gid $gid gradle1
+COPY --chown=gradle1:gradle1 . /home/mvn/src
 RUN ls -la
-
 WORKDIR /home/maven/src/document-service
 RUN mvn package
 
