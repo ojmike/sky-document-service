@@ -1,4 +1,4 @@
-FROM amazoncorretto:21-alpine3.16 as build
+FROM maven:alpine as build
 
 WORKDIR /opt/build
 
